@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SalleEditDlg" widgetVar="SalleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSalleTitle}">
+            <h:form id="SalleEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{salleController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSalleLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{salleController.selected.id}" title="#{bundle.EditSalleTitle_id}" required="true" requiredMessage="#{bundle.EditSalleRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditSalleLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{salleController.selected.code}" title="#{bundle.EditSalleTitle_code}" />
+                        <p:outputLabel value="#{bundle.EditSalleLabel_latitude}" for="latitude" />
+                        <p:inputText id="latitude" value="#{salleController.selected.latitude}" title="#{bundle.EditSalleTitle_latitude}" required="true" requiredMessage="#{bundle.EditSalleRequiredMessage_latitude}"/>
+                        <p:outputLabel value="#{bundle.EditSalleLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{salleController.selected.libelle}" title="#{bundle.EditSalleTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditSalleLabel_longitude}" for="longitude" />
+                        <p:inputText id="longitude" value="#{salleController.selected.longitude}" title="#{bundle.EditSalleTitle_longitude}" required="true" requiredMessage="#{bundle.EditSalleRequiredMessage_longitude}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{salleController.update}" value="#{bundle.Save}" update="display,:SalleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SalleEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SalleEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

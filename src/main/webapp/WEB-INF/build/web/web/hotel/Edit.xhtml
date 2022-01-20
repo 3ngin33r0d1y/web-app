@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HotelEditDlg" widgetVar="HotelEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditHotelTitle}">
+            <h:form id="HotelEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{hotelController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditHotelLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{hotelController.selected.id}" title="#{bundle.EditHotelTitle_id}" required="true" requiredMessage="#{bundle.EditHotelRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditHotelLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{hotelController.selected.adresse}" title="#{bundle.EditHotelTitle_adresse}" />
+                        <p:outputLabel value="#{bundle.EditHotelLabel_latitude}" for="latitude" />
+                        <p:inputText id="latitude" value="#{hotelController.selected.latitude}" title="#{bundle.EditHotelTitle_latitude}" required="true" requiredMessage="#{bundle.EditHotelRequiredMessage_latitude}"/>
+                        <p:outputLabel value="#{bundle.EditHotelLabel_longitude}" for="longitude" />
+                        <p:inputText id="longitude" value="#{hotelController.selected.longitude}" title="#{bundle.EditHotelTitle_longitude}" required="true" requiredMessage="#{bundle.EditHotelRequiredMessage_longitude}"/>
+                        <p:outputLabel value="#{bundle.EditHotelLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{hotelController.selected.nom}" title="#{bundle.EditHotelTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditHotelLabel_star}" for="star" />
+                        <p:inputText id="star" value="#{hotelController.selected.star}" title="#{bundle.EditHotelTitle_star}" required="true" requiredMessage="#{bundle.EditHotelRequiredMessage_star}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{hotelController.update}" value="#{bundle.Save}" update="display,:HotelListForm:datalist,:growl" oncomplete="handleSubmit(args, 'HotelEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HotelEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
